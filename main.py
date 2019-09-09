@@ -1,7 +1,5 @@
 from flask import Flask, request, render_template, url_for, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import or_, and_, select
-from wtforms import Form, StringField, SelectField
 
 app= Flask(__name__)
 app.config['SECRET_KEY']='unique'
@@ -73,45 +71,6 @@ def delete_emp(id):
 @app.route("/search", methods=["GET","POST"])
 def search():   
    return render_template("search.html")
-
-
-
-
-
-
-#@app.route('/search_emp/<name>', methods = ['GET', 'POST'])
-#def search_advanced(name):
-#    if request.method == 'GET':
-#       result = request.args.get('name')
-#       print(result)
-#
- #      qry = Employee.query.filter((Employee.name == result))
-  #     return render_template('show_all.html')))
-
-
-#    return render_template('list.html')
-
-
-
-
-
-
-
-
-
-    
-
-
-#@app.route("/search_emp,<result>", methods=["GET","POST"])
-#def search_emp(result): ,                                       Employee.designation == result,Employee.phone == result
-
-
-  
-
-    
-    
-
-
 
 if __name__ == "__main__":
     db.create_all()   
