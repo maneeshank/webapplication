@@ -1,0 +1,44 @@
+<html>
+	
+<link rel="stylesheet" href="./static/style.css" type="text/css">
+<body>
+
+
+<div class="body-content">
+  <div class="module">
+	  <div class="body">
+		  
+<center>
+ {%- for category, message in get_flashed_messages(with_categories = true) %}
+         <div class = "alert alert-danger">
+            {{ message }}
+         </div>
+      {%- endfor %}
+
+
+<h1>Add Employees  </h1></center>
+
+<form action="/add_employee" method="POST">
+<label>Name:</label>
+<input type="text" name="name" required /><br>
+
+<label>Designation:</label>
+<input type="text" name="designation" required/><br>
+
+<label>Address:</label>
+<textarea type="text" name="addr" required/></textarea><br>
+
+<label>Phone:</label>
+<input type="text" name="phone" pattern="[6789][0-9]{9}"required /><br>
+
+<input type="submit" value="Add" name="add"  class="btn btn-block btn-primary" /><br>
+
+<center><h3><a href ="{{ url_for('index') }}" style = " color:skyblue;">Back</a></h3> </center>
+
+</div>
+</div>
+</div>
+
+</body>
+</html>
+

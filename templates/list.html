@@ -1,0 +1,33 @@
+
+<html>
+<link rel="stylesheet" href="./static/style.css" type="text/css">
+<body>
+<div class="body-content">
+<center>
+<h1>Employee Details <h3>(<a href = "{{ url_for('index') }}" style = " color:skyblue;">Back</a>)</h3></h1>
+       <table cellpadding="30" cellspacing="30" style="text-align:left; margin-left:0em">
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Designation</th>
+               <th>Address</th>
+               <th>Phone</th>
+            </tr>
+         </thead>
+
+         <tbody >
+            {% for employee in employee %}
+               <tr>
+                  <td>{{ employee.name }}</td>
+                  <td>{{ employee.designation }}</td>
+                  <td>{{ employee.addr }}</td>
+                  <td>{{ employee.phone }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   
+</center>
+</div>
+</body>
+</html>

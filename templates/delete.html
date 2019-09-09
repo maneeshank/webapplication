@@ -1,0 +1,50 @@
+<html>
+<body>
+	      
+    
+<link rel="stylesheet" href="./static/style.css" type="text/css">    
+
+<div class="body-content">
+<center> 
+         {%- for category, message in get_flashed_messages(with_categories = true) %}
+         <div class = "alert alert-danger">
+            {{ message }}
+         </div>
+         {%- endfor %}
+  
+  
+      
+    <h1>Manage Existing Employees <h3><a href ="{{ url_for('index') }}" style = " color:blue;">Back</a></h3></h1>
+    <form action="/delete_emp/employee.id" method="GETT">
+       <table cellpadding="30" cellspacing="30" style="text-align:left; margin-left:0em">
+               
+                
+         <thead>
+            <tr>
+               <th>Id</th>
+               <th>Name</th>
+               <th>Designation</th>
+               <th>Address</th>
+               <th>Phone</th>
+            </tr>
+         </thead>
+
+         <tbody >
+            {% for employee in employee %}
+               <tr>  
+                  <td>{{ employee.id }}</td>
+                  <td>{{ employee.name }}</td>
+                  <td>{{ employee.designation }}</td>
+                  <td>{{ employee.addr }}</td>
+                  <td>{{ employee.phone }}</td>
+                  <td><a href={{'/delete_emp'}}/{{employee.id}} style = " color:blue;">Delete</a></td>
+               </tr>
+            {% endfor %}
+         </tbody>
+         
+     </table>
+  </form>
+</center>
+</div>  
+<body>
+</html>
