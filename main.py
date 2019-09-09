@@ -1,10 +1,11 @@
 from flask import Flask, request, render_template, url_for, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import or_, and_, select
 
 app= Flask(__name__)
 app.config['SECRET_KEY']='unique'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///employeedatabase.db'
-app.config['WHOOSE_BASE'] = 'results'
+
 
 db= SQLAlchemy(app)
 
@@ -47,13 +48,16 @@ def add_emp():
       if not request.form['name'] or not request.form['designation'] or not request.form['addr']or not request.form['phone']:
          flash('Please enter all the fields', 'error')
       else:
-       
-         emp = Employee(name=request.form['name'], designation= request.form['designation'],addr=request.form['addr'], phone=request.form['phone'])
-
-
-         db.session.add(emp)
-         db.session.commit()
-         flash('Record was successfully added')
+         username = request.form['name']
+         count = Employee.query.filter(Employee.name == username).count()
+         if count <= 0:
+             emp = Employee(name=request.form['name'], designation= request.form['designation'],addr=request.form['addr'], phone=request.form['phone'])
+             db.session.add(emp)
+             db.session.commit()
+             flash('Record was successfully added')
+         else:
+             flash('User Already Exist')
+ 
          return redirect(url_for('show_all'))
     return render_template('add.html')
     
@@ -74,6 +78,22 @@ def delete_emp(id):
 @app.route("/search", methods=["GET","POST"])
 def search():   
    return render_template("search.html")
+
+
+@app.route('/search_emp/', methods = ['GET', 'POST'])
+def search_advanced():
+    if request.method == 'GET':
+       result = request.args.get('query')
+       print(result)
+
+       qry = Employee.query.filter(or_((Employee.name.contains(result)),(Employee.designation.contains(result)),(Employee.phone.contains(result))))
+       count = qry.count();
+       if count > 0:
+          return render_template('view.html', employee= qry.all())
+
+    return render_template('search.html')
+
+
 
 if __name__ == "__main__":
     db.create_all()   
