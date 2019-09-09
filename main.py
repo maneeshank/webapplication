@@ -47,7 +47,10 @@ def add_emp():
       if not request.form['name'] or not request.form['designation'] or not request.form['addr']or not request.form['phone']:
          flash('Please enter all the fields', 'error')
       else:
+       
          emp = Employee(name=request.form['name'], designation= request.form['designation'],addr=request.form['addr'], phone=request.form['phone'])
+
+
          db.session.add(emp)
          db.session.commit()
          flash('Record was successfully added')
