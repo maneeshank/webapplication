@@ -1,15 +1,28 @@
 <html>
 <body>
-        <h4>Search</h4>
-        <form method="GET" action={{'/search_emp'}}>
+
+<link rel="stylesheet" href="./static/style.css" type="text/css">
+<div class="body-content">
+  <div class="module">
+  
+
+        <center><h1>Search Employees</h1></center>
+
+
+        <form method="GET" action="results">
             
-                <label>Name</label>
+                <label>Search employee with Name/Designation/Phone</label>
                 <input type="text"  name="query" />
-            </div>
-            <button type="submit" class="btn btn-block btn-primary">Search</button>
+            
+                <button type="submit" class="btn btn-block btn-primary">Search</button><br/>
+
+                <center><h3><a href ="{{ url_for('index') }}" style = " color:skyblue;">Back</a></h3> </center>
         </form>
+      
     </div>
 </div>
 
 </body>
 </html>
+
+

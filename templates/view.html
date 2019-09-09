@@ -1,0 +1,39 @@
+<html>
+<body>
+	      
+    
+<link rel="stylesheet" href="./static/style.css" type="text/css"><div class="body-content">
+<center> 
+ 
+      
+    <h1> Employees <h3><a href ="{{ url_for('search') }}" style = " color:skyblue;">Back</a></h3></h1>
+       <table cellpadding="30" cellspacing="30" style="text-align:left; margin-left:0em">
+               
+                
+         <thead>
+            <tr>
+               <th>Id</th>
+               <th>Name</th>
+               <th>Designation</th>
+               <th>Address</th>
+               <th>Phone</th>
+            </tr>
+         </thead>
+
+         <tbody >
+            {% for employee in employee %}
+               <tr>  
+                  <td>{{ employee.id }}</td>
+                  <td>{{ employee.name }}</td>
+                  <td>{{ employee.designation }}</td>
+                  <td>{{ employee.addr }}</td>
+                  <td>{{ employee.phone }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+         
+     </table>
+</center>
+</div>  
+<body>
+</html>
