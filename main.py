@@ -80,7 +80,7 @@ def search():
    return render_template("search.html")
 
 
-@app.route('/search_emp/', methods = ['GET', 'POST'])
+@app.route("/results", methods = ['GET', 'POST'])
 def search_advanced():
     if request.method == 'GET':
        result = request.args.get('query')
